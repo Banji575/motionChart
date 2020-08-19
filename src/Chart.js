@@ -1,6 +1,8 @@
 import Canvas from './Canvas';
 import Objectfactory from './ObjectFactory';
-import {isArrFullTrue} from './utils'
+import {
+    isArrFullTrue
+} from './utils'
 
 const pointCoord = [{
         type: 'point',
@@ -121,14 +123,14 @@ export default class Chart extends Canvas {
     }
 
     createPoint() {
-        if(this.state.isEdgeChart){
+        if (this.state.isEdgeChart) {
             this.state.currentChart = pointCoord.map(point => {
                 return Objectfactory.createObject(point.type, point)
             })
             this.state.newChart = pointCoord2.map(point => {
                 return Objectfactory.createObject(point.type, point)
             })
-        }else{
+        } else {
             this.state.currentChart = pointCoord2.map(point => {
                 return Objectfactory.createObject(point.type, point)
             })
@@ -159,15 +161,13 @@ export default class Chart extends Canvas {
         })
     }
 
-
-
     animate() {
         const readyArr = []
-        const animation = () =>{
+        const animation = () => {
             this.state.currentChart.map((el, i) => {
                 const newEl = this.state.newChart[i]
                 if (newEl.x > el.x) {
-                    el.x  += 1
+                    el.x += 1
                     readyArr[i] = false
                 } else if (newEl.x < el.x) {
                     el.x -= 1
@@ -179,19 +179,18 @@ export default class Chart extends Canvas {
                 } else if (newEl.y < el.y) {
                     el.y -= 1
                     readyArr[i] = false
-                }
-                else if(newEl.x===el.x && newEl.y === newEl.y){
+                } else if (newEl.x === el.x && newEl.y === newEl.y) {
                     readyArr[i] = true
-                    
+
                 }
             })
-            
-            this.ctx.clearRect(0,0, 300, 300)
+
+            this.ctx.clearRect(0, 0, 300, 300)
             this.createChartAxis()
             this.renderPoint(pointCoord)
             const requestFrame = window.requestAnimationFrame(animation)
 
-            if(!isArrFullTrue(readyArr) && readyArr.length === this.state.currentChart.length){
+            if (!isArrFullTrue(readyArr) && readyArr.length === this.state.currentChart.length) {
                 this.state.isEdgeChart = !this.state.isEdgeChart
                 this.createPoint()
                 cancelAnimationFrame(requestFrame)

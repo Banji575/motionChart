@@ -1,12 +1,9 @@
 import Point from "./Point";
 import DomListener from "./DomListener";
 
-export default class Objectfactory{
-    constructor(){
-
-    }
-
-    static createObject(type, options){
+export default class Objectfactory {
+    constructor() {}
+    static createObject(type, options) {
         switch (type) {
             case 'point':
                 return new Point(options.x, options.y, options.radius)

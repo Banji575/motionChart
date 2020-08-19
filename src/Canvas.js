@@ -6,7 +6,6 @@ export default class Canvas {
         this.ctx = null
     }
 
-
     render() {
         const canvas = document.createElement('canvas');
         canvas.style.width = this.width + 'px';
