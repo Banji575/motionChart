@@ -1,0 +1,14 @@
+.root{
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+}
+
+#canvas{
+    background-color: #C4C4C4;
+    padding: 10px;
+}
+
+body{
+    background-color: #000;
+}
